@@ -29,7 +29,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
 
   // parse data
   stateData.forEach(function(stateData) {
-    data.abbr = + data.abbr;
+    data.abbr = +data.abbr;
     data.poverty = +data.poverty;
     data.healthcare = +data.healthcare;
   });
