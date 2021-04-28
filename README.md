@@ -1,4 +1,4 @@
-# D3 Homework - Data Journalism and D3
+# Data Journalism and D3
 
 You need to create a scatter plot between two of the data variables in the dataset from the csv file, `Healthcare vs. Poverty`.
 
