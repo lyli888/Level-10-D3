@@ -94,11 +94,11 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("hairData.csv").then(function(hairData, err) {
+d3.csv("data.csv").then(function(thisData, err) {
   if (err) throw err;
 
   // parse data
-  hairData.forEach(function(data) {
+  thisData.forEach(function(data) {
     data.hair_length = +data.hair_length;
     data.num_hits = +data.num_hits;
     data.num_albums = +data.num_albums;
