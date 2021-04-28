@@ -1,3 +1,9 @@
+// Clear SVG Area
+var svgArea = d3.select("body").select("svg");
+if (!svgArea.empty()) {
+  svgArea.remove();
+}
+
 // SVG Object Dimensions
 var svgWidth = 960;
 var svgHeight = 500;
