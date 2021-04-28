@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
  
 
   // parse data
-  statedata.forEach(function(data) {
+  statedata.forEach(function(d) {
     data.abbr = +d.abbr;
     data.poverty = +d.poverty;
     data.healthcare = +d.healthcare;
