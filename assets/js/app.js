@@ -62,7 +62,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .call(leftAxis);
     
   // Create Circles
-  var circleLabels = chartGroup.selectAll("circle")
+  var circleLabels = chartGroup.selectAll("Circle")
     .data(statedata)
     .enter()
     .append("circle")
@@ -72,15 +72,19 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("class", "blue")
     .attr("opacity", ".5");
 
-  var circleText = chartGroup.selectAll(".stateText")
-    .data(statedata)
-    .enter()
-    .append("text")
-    .classed ("stateText", true)
-    .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.healthcare))
-    .attr("font-size", "8px")
-    .text(d => d.abbr)
+    
+    circleLabels
+    .attr("x", function(d) {
+      return xLinearScale(d.poverty);
+    })
+    .attr("y", function(d) {
+      return yLinearScale(d.healthcare);
+    })
+    .text(function(d) {
+      return d.abbr;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
     .attr("text-anchor", "middle")
     .attr("fill", "white");
 
