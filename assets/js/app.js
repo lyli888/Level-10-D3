@@ -62,23 +62,26 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     .call(leftAxis);
     
   // Create Circles
-  var circleLabels = chartGroup.selectAll(null).data(stateData).enter().append("text")
-    .data(data.abbr)
+  var circleLabels = chartGroup.selectAll("circle")
+    .data(data)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(data.poverty))
-    .attr("cy", d => yLinearScale(data.healthcare))
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 15)
     .attr("class", "blue")
     .attr("opacity", ".5");
 
-  // Label Circles
-  circleLabels
-    .attr("x", function(d) { return data.poverty; })
-    .attr("y", function(d) { return data.healthcare; })
-    .text(function(d) { return data.abbr; })
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "5px")
+  var circleText = chartGroup.selectAll(".stateText")
+    .data(data)
+    .enter()
+    .append("text")
+    .classed ("stateText", true)
+    .attr("x", d => xScale(d.poverty))
+    .attr("y", d => yScale(d.healthcare))
+    .attr("font-size", "8px")
+    .text(d => d.abbr)
+    .attr("text-anchor", "middle")
     .attr("fill", "white");
 
 // Y Axis Label
