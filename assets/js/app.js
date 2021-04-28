@@ -35,7 +35,7 @@ d3.csv("data.csv").then(function(stateData, err) {
 
     // Create x scale function
     var xLinearScale = d3.scaleLinear()
-        .domain(0, d3.max(stateData, d => d.poverty)])
+        .domain(0, d3.max(stateData, d => d.poverty))
         .range([0, width])
 
     // Create y scale function
