@@ -101,11 +101,11 @@ var tooltip = d3.tip()
 //Event Listeners
 
 circlesGroup.on("click", function(data) {
-    toolTip.show(data, this);
+    tooltip.show(data, this);
     })
     // onmouseout event
     .on("mouseout", function(data, index) {
-        toolTip.hide(data);
+        tooltip.hide(data);
     });
 
 //Axes labels
