@@ -35,9 +35,9 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
 
   // parse data
   statedata.forEach(function(d) {
-    data.abbr = +d.abbr;
-    data.poverty = +d.poverty;
-    data.healthcare = +d.healthcare;
+    d.abbr = +d.abbr;
+    d.poverty = +d.poverty;
+    d.healthcare = +d.healthcare;
   });
 
   var xLinearScale = d3.scaleLinear()
