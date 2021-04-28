@@ -25,22 +25,25 @@ var chartGroup = svg.append("g")
 
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("data.csv").then(function(thisData, err) {
+d3.csv("data.csv").then(function(stateData, err) {
   if (err) throw err;
 
   // parse data
   thisData.forEach(function(data) {
-    
+    data.id = +data.id;
+    data.state = +data.state;
+    data.abbr = +data.abbr;
+    data.poverty = +data.poverty;
+    data.obesity = +data.obesity;
 
-    
   });
 
   // xLinearScale function above csv import
-  var xLinearScale = xScale(thisData, chosenXAxis);
+  var xLinearScale = xScale(stateData, chosenXAxis);
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(thisData, d => d.num_hits)])
+    .domain([0, d3.max(stateData, d => d.num_hits)])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -59,7 +62,7 @@ d3.csv("data.csv").then(function(thisData, err) {
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(thisData)
+    .data(stateData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
