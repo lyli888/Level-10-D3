@@ -28,9 +28,9 @@ d3.csv("/data/data.csv").then(function(stateData) {
   if (err) throw err;
 
   // parse data
-  stateData.forEach(function(d) {
+  stateData.forEach(function(stateData) {
     data.poverty = +data.poverty;
-    data.obesity = +data.healthcare;
+    data.healthcare = +data.healthcare;
   });
 
     // Create x scale function
@@ -64,7 +64,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 15)
-    .attr("class", "stateCircle")
+    .attr("class", "pink")
     .attr("opacity", ".5");
 
 
@@ -91,7 +91,7 @@ var tooltip = d3.tip()
     .attr("class", "d3-tip")
     .offset([80, -60])
     .html(function(d) {
-    return (`${d.state}<br>% In Poverty: ${d.poverty}<br>Lacks Healthcare (%): ${d.healthcare}`);
+    return (`${d.state}<br>% In Poverty: ${d.poverty}<br>% With Healthcare: ${d.healthcare}`);
     });
 
 // Step 7: Create tooltip in the chart
@@ -100,12 +100,12 @@ var tooltip = d3.tip()
 
 //Event Listeners
 
-circlesGroup.on("click", function(data) {
-    tooltip.show(data, this);
+circlesGroup.on("click", function(stateData) {
+    tooltip.show(statedata, this);
     })
     // onmouseout event
-    .on("mouseout", function(data, index) {
-        tooltip.hide(data);
+    .on("mouseout", function(stateData, index) {
+        tooltip.hide(stateData);
     });
 
 //Axes labels
@@ -115,7 +115,7 @@ chartGroup.append("text")
 .attr("x", 0 - (height / 2))
 .attr("dy", "1em")
 .attr("class", "axisText")
-.text("% Without Healthcare");
+.text("% With Healthcare");
 
 chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
