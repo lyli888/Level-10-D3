@@ -56,34 +56,6 @@ d3.csv("/data/data.csv").then(function(stateData) {
   chartGroup.append("g")
     .call(leftAxis);
 
-  // Create Circles
-  var circleLabels = chartGroup.selectAll(null).data(stateData).enter().append("text");
-    .data(stateData)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d.poverty))
-    .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", 15)
-    .attr("class", "blue")
-    .attr("opacity", ".5");
-
-    circleLabels
-    .attr("x", function(d) { return d.poverty; })
-    .attr("y", function(d) { return d.healthcare; })
-    .text(function(d) { return d.abbr; })
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "5px")
-    .attr("fill", "white");
-
-  //Event Listener
-  circleLabels.on("click", function(data) {
-  tooltip.show(data, this);
-  })
-  // onmouseout event
-  .on("mouseout", function(data, index) {
-      tooltip.hide(data);
-  });
-
     
 //Axes labels
 chartGroup.append("text")
