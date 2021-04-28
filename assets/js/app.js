@@ -1,8 +1,8 @@
-//SVG Object Dimensions
+// SVG Object Dimensions
 var svgWidth = 960;
 var svgHeight = 500;
 
-//Margins
+// Margins
 var margin = {
   top: 20,
   right: 40,
@@ -56,7 +56,6 @@ d3.csv("/data/data.csv").then(function(stateData) {
   // Append Y axis
   chartGroup.append("g")
     .call(leftAxis);
-
     
   // Create Circles
   var circleLabels = chartGroup.selectAll(null).data(stateData).enter().append("text")
@@ -69,6 +68,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
     .attr("class", "blue")
     .attr("opacity", ".5");
 
+  // Label Circles
   circleLabels
     .attr("x", function(d) { return d.poverty; })
     .attr("y", function(d) { return d.healthcare; })
@@ -77,7 +77,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
     .attr("font-size", "5px")
     .attr("fill", "white");
 
-//Axes labels
+// Y Axis Label
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left + 40)
@@ -86,6 +86,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
     .attr("class", "axisText")
     .text("% Without Healthcare");
 
+// X Axis Label
 chartGroup.append("text")
     .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
     .attr("class", "axisText")
