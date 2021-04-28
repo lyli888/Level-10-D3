@@ -30,32 +30,30 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("/data/data.csv").then(function(stateData) {
+d3.csv("./assets/data/data.csv").then(function(data) {
   if (err) throw err;
 
   // parse data
-  stateData.forEach(function(stateData) {
-    data.abbr = +data.abbr;
-    data.poverty = +data.poverty;
-    data.healthcare = +data.healthcare;
+  data.forEach(function(d) {
+    d.abbr = +d.abbr;
+    d.poverty = +d.poverty;
+    d.healthcare = +d.healthcare;
   });
 
-    // Create x scale function
-    var xLinearScale = d3.scaleLinear()
-        .domain(d3.extent(stateData, d => data.poverty))
-        .range([0, width]);
-
-    // Create y scale function
-    var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(stateData, d => data.healthcare)])
-        .range([height, 0]);
+  var xLinearScale = d3.scaleLinear()
+    .domain([d3.min(data, d => (d.poverty-0.2)), d3.max(data, d => d.poverty) ])               
+    .range([0, width]);
+    
+  var yLinearScale = d3.scaleLinear()
+    .domain([d3.min(data, d=> (d.healthcare-1)), d3.max(data, d => d.healthcare) ])
+    .range([height, 0]);
 
     // Create initial axis functions
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
 
-  // Append X axis
-  var xAxis = chartGroup.append("g")
+  // Append X Axis
+ chartGroup.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(bottomAxis);
 
