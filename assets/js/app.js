@@ -29,6 +29,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
 
   // parse data
   stateData.forEach(function(stateData) {
+    data.abbr = + data.abbr;
     data.poverty = +data.poverty;
     data.healthcare = +data.healthcare;
   });
@@ -36,7 +37,7 @@ d3.csv("/data/data.csv").then(function(stateData) {
     // Create x scale function
     var xLinearScale = d3.scaleLinear()
         .domain(d3.extent(stateData, d => d.poverty))
-        .range([0, width])
+        .range([0, width]);
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
