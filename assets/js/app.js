@@ -38,9 +38,10 @@ d3.csv("data.csv").then(function(stateData, err) {
 
   });
 
-  // xLinearScale function above csv import
+  // Create x scale function
   var xLinearScale = d3.scaleLinear()
-     .domain([d3.min[])
+     .domain([d3.min[(stateData, d -> d.poverty) - 1, d3.max(stateData, d -> d.poverty)])
+     .range([0, width])
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
