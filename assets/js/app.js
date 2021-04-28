@@ -72,19 +72,15 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("class", "blue")
     .attr("opacity", ".5");
 
-    
-    circleLabels
-    .attr("x", function(d) {
-      return xLinearScale(d.poverty);
-    })
-    .attr("y", function(d) {
-      return yLinearScale(d.healthcare);
-    })
-    .text(function(d) {
-      return d.abbr;
-    })
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "10px")
+  var circleText = chartGroup.selectAll(".stateText")
+    .data(statedata)
+    .enter()
+    .append("text")
+    .classed ("stateText", true)
+    .attr("x", d => xLinearScale(d.poverty))
+    .attr("y", d => yLinearScale(d.healthcare))
+    .attr("font-size", "8px")
+    .text(d => d.abbr)
     .attr("text-anchor", "middle")
     .attr("fill", "white");
 
