@@ -91,6 +91,7 @@ chartGroup.append("text")
     .text("% In Poverty");
 
 }).catch(function(error) {
+
   console.log(error);
 
 });
