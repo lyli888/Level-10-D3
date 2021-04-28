@@ -23,7 +23,6 @@ var svg = d3.select("#scatter")
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-
 // Retrieve data from the CSV file and execute everything below
 d3.csv("data.csv").then(function(stateData, err) {
   if (err) throw err;
@@ -36,12 +35,12 @@ d3.csv("data.csv").then(function(stateData, err) {
 
     // Create x scale function
     var xLinearScale = d3.scaleLinear()
-        .domain([d3.min(stateData, d -> d.poverty) - 1, d3.max(stateData, d -> d.poverty)])
+        .domain(0, d3.max(stateData, d => d.poverty)])
         .range([0, width])
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-        .domain([d3.min(stateData, d -> d.healthcare) - 1, d3.max(stateData, d -> d.healthcare)])
+        .domain([0, d3.max(stateData, d => d.healthcare)])
         .range([height, 0]);
 
     // Create initial axis functions
@@ -87,6 +86,17 @@ d3.csv("data.csv").then(function(stateData, err) {
   .attr("class", "stateText");
 
 // Tooltip Function
+
+var tooltip = d3.tip()
+    .attr("class", "d3-tip")
+    .offset([80, -60])
+    .html(function(d) {
+    return (`${d.state}<br>% In Poverty: ${d.poverty}<br>Lacks Healthcare (%): ${d.healthcare}`);
+    });
+
+// Step 7: Create tooltip in the chart
+    // ==============================
+    chartGroup.call(tooltip);    
 
 //Event Listeners
 
