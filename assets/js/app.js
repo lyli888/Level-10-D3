@@ -27,11 +27,11 @@ var chartGroup = svg.append("g")
 var chosenXAxis = "hair_length";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(hairData, chosenXAxis) {
+function xScale(thisData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(hairData, d => d[chosenXAxis]) * 0.8,
-      d3.max(hairData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(thisData, d => d[chosenXAxis]) * 0.8,
+      d3.max(thisData, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -105,11 +105,11 @@ d3.csv("data.csv").then(function(thisData, err) {
   });
 
   // xLinearScale function above csv import
-  var xLinearScale = xScale(hairData, chosenXAxis);
+  var xLinearScale = xScale(thisData, chosenXAxis);
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.num_hits)])
+    .domain([0, d3.max(thisData, d => d.num_hits)])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -128,7 +128,7 @@ d3.csv("data.csv").then(function(thisData, err) {
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(hairData)
+    .data(thisData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
