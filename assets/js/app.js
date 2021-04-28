@@ -34,19 +34,19 @@ d3.csv("data.csv").then(function(stateData, err) {
     data.obesity = +data.healthcare;
   });
 
-  // Create x scale function
-  var xLinearScale = d3.scaleLinear()
-     .domain([d3.min[(stateData, d -> d.poverty) - 1, d3.max(stateData, d -> d.poverty)])
-     .range([0, width])
+    // Create x scale function
+    var xLinearScale = d3.scaleLinear()
+        .domain([d3.min(stateData, d -> d.poverty) - 1, d3.max(stateData, d -> d.poverty)])
+        .range([0, width])
 
-  // Create y scale function
-  var yLinearScale = d3.scaleLinear()
-    .domain([d3.min[(stateData, d -> d.healthcare) - 1, d3.max(stateData, d -> d.healthcare)])
-    .range([height, 0]);
+    // Create y scale function
+    var yLinearScale = d3.scaleLinear()
+        .domain([d3.min(stateData, d -> d.healthcare) - 1, d3.max(stateData, d -> d.healthcare)])
+        .range([height, 0]);
 
-  // Create initial axis functions
-  var bottomAxis = d3.axisBottom(xLinearScale);
-  var leftAxis = d3.axisLeft(yLinearScale);
+    // Create initial axis functions
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
 
   // Append x axis
   var xAxis = chartGroup.append("g")
