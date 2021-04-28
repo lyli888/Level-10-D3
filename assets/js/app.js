@@ -30,22 +30,22 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("./assets/data/data.csv").then(function(data) {
+d3.csv("assets/data/data.csv").then(function(statedata) {
   if (err) throw err;
 
   // parse data
-  data.forEach(function(d) {
-    d.abbr = +d.abbr;
-    d.poverty = +d.poverty;
-    d.healthcare = +d.healthcare;
+  statedata.forEach(function(data) {
+    data.abbr = +d.abbr;
+    data.poverty = +d.poverty;
+    data.healthcare = +d.healthcare;
   });
 
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(data, d => (d.poverty-0.2)), d3.max(data, d => d.poverty) ])               
+    .domain([d3.min(statedata, d => (d.poverty-0.2)), d3.max(statedata, d => d.poverty) ])               
     .range([0, width]);
     
   var yLinearScale = d3.scaleLinear()
-    .domain([d3.min(data, d=> (d.healthcare-1)), d3.max(data, d => d.healthcare) ])
+    .domain([d3.min(statedata, d=> (d.healthcare-1)), d3.max(statedata, d => d.healthcare) ])
     .range([height, 0]);
 
     // Create initial axis functions
@@ -63,7 +63,7 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     
   // Create Circles
   var circleLabels = chartGroup.selectAll("circle")
-    .data(data)
+    .data(statedata)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
@@ -73,7 +73,7 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     .attr("opacity", ".5");
 
   var circleText = chartGroup.selectAll(".stateText")
-    .data(data)
+    .data(statedata)
     .enter()
     .append("text")
     .classed ("stateText", true)
