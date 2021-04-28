@@ -36,12 +36,12 @@ d3.csv("/data/data.csv").then(function(stateData) {
 
     // Create x scale function
     var xLinearScale = d3.scaleLinear()
-        .domain(d3.extent(stateData, d => d.poverty))
+        .domain(d3.extent(stateData, d => data.poverty))
         .range([0, width]);
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(stateData, d => d.healthcare)])
+        .domain([0, d3.max(stateData, d => data.healthcare)])
         .range([height, 0]);
 
     // Create initial axis functions
@@ -59,20 +59,20 @@ d3.csv("/data/data.csv").then(function(stateData) {
     
   // Create Circles
   var circleLabels = chartGroup.selectAll(null).data(stateData).enter().append("text")
-    .data(stateData)
+    .data(data.abbr)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(d.poverty))
-    .attr("cy", d => yLinearScale(d.healthcare))
+    .attr("cx", d => xLinearScale(data.poverty))
+    .attr("cy", d => yLinearScale(data.healthcare))
     .attr("r", 15)
     .attr("class", "blue")
     .attr("opacity", ".5");
 
   // Label Circles
   circleLabels
-    .attr("x", function(d) { return d.poverty; })
-    .attr("y", function(d) { return d.healthcare; })
-    .text(function(d) { return d.abbr; })
+    .attr("x", function(d) { return data.poverty; })
+    .attr("y", function(d) { return data.healthcare; })
+    .text(function(d) { return data.abbr; })
     .attr("font-family", "sans-serif")
     .attr("font-size", "5px")
     .attr("fill", "white");
