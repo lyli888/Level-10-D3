@@ -39,11 +39,12 @@ d3.csv("data.csv").then(function(stateData, err) {
   });
 
   // xLinearScale function above csv import
-  var xLinearScale = xScale(stateData, chosenXAxis);
+  var xLinearScale = d3.scaleLinear()
+     .domain([d3.min[])
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(stateData, d => d.num_hits)])
+    .domain()
     .range([height, 0]);
 
   // Create initial axis functions
