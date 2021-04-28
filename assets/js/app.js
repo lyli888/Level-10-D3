@@ -31,7 +31,7 @@ var chartGroup = svg.append("g")
 
 // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function(statedata) {
-  if (err) throw err;
+ 
 
   // parse data
   statedata.forEach(function(data) {
@@ -101,9 +101,6 @@ chartGroup.append("text")
     .style("text-anchor", "middle")
     .text("% In Poverty");
 
-}).catch(function(error) {
-
-  console.log(error);
 
 });
 
