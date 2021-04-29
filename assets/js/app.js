@@ -78,11 +78,19 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .enter()
     .append("text")
     .attr("class", "stateText")
-    .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.healthcare))
+    .attr("x", function(d) { 
+      return xLinearScale(d.poverty)
+      })
+    .attr("y", function(d) {
+      return yLinearScale(d.healthcare)
+      })
+    .text(function(d) {
+      return d.abbr
+      })
+    .attr("font-family", "sans-serif")
     .attr("font-size", "10px")
-    .text(d => d.abbr)
     .attr("text-anchor", "middle")
+    .attr("fill", "white");
 
     // Step 6: Initialize tool tip
     // ==============================
@@ -90,7 +98,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
       .attr("class", "tooltip")
       .offset([20, -10])
       .html(function(d) {
-        return (`${d.state}<b>% Poverty: ${d.poverty}<b>% No Healthcare: ${d.healthcare}<b>%`);
+        return (`<b>Poverty: ${d.poverty}<b>% No Healthcare: ${d.healthcare}<b>%`);
       });
 
     // Step 7: Create tooltip in the chart
