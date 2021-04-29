@@ -10,10 +10,10 @@ var svgHeight = 500;
 
 // Margins
 var margin = {
-  top: 20,
+  top: 80,
   right: 40,
   bottom: 80,
-  left: 100
+  left: 15
 };
 
 var width = svgWidth - margin.left - margin.right;
