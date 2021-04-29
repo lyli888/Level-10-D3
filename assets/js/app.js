@@ -98,7 +98,7 @@ var yLinearScale = d3.scaleLinear()
       .attr("class", "tooltip")
       .offset([20, -10])
       .html(function(d) {
-        return (`<b>Poverty: ${d.poverty}<b>% No Healthcare: ${d.healthcare}<b>%`);
+        return (`<b>${d.state} <b>Poverty: ${d.poverty}<b>% No Healthcare: ${d.healthcare}<b>%`);
       });
 
     // Step 7: Create tooltip in the chart
