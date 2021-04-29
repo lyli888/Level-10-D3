@@ -35,7 +35,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
 
   // Parse data
   statedata.forEach(function(d) {
-    d.state = +d.state
+    d.state = +d.state;
     d.abbr = +d.abbr;
     d.poverty = +d.poverty;
     d.healthcare = +d.healthcare;
@@ -90,7 +90,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
       .attr("class", "tooltip")
       .offset([20, -10])
       .html(function(d) {
-        return (`${d.state}<b>% Poverty: ${d.poverty}<b>% Without Healthcare: ${d.healthcare}`);
+        return (`${d.state}<b>% Poverty: ${d.poverty}<b>% No Healthcare: ${d.healthcare}<b>%`);
       });
 
     // Step 7: Create tooltip in the chart
