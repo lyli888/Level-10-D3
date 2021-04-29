@@ -72,17 +72,13 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("class", "blue")
     .attr("opacity", ".5");
 
-  var circleText = chartGroup.selectAll(".stateText")
+  //Circle Text
+  var circleText = chartGroup.selectAll("text.stateText")
     .data(statedata)
     .enter()
     .append("text")
-    .classed ("stateText", true)
-    .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.healthcare))
-    .attr("font-size", "8px")
-    .text(d => d.abbr)
-    .attr("text-anchor", "middle")
-    .attr("fill", "white");
+    .attr("dx", d => xLinearScale(d.poverty))
+    .attr("dy", d => yLinearScale(d.healthcare));
 
 // Y Axis Label
   chartGroup.append("text")
@@ -100,7 +96,6 @@ chartGroup.append("text")
     .attr("class", "axisText")
     .style("text-anchor", "middle")
     .text("% In Poverty");
-
 
 });
 
