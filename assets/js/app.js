@@ -10,10 +10,10 @@ var svgHeight = 500;
 
 // Margins
 var margin = {
-  top: 80,
+  top: 20,
   right: 40,
-  bottom: 80,
-  left: 15
+  bottom: 60,
+  left: 60
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -118,7 +118,7 @@ var yLinearScale = d3.scaleLinear()
 // Y Axis Label
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left + 40)
+    .attr("y", 0 - margin.left + 50)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .attr("class", "axisText")
