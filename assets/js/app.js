@@ -35,17 +35,17 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
 
   // Parse data
   statedata.forEach(function(d) {
-    d.state = +d.state;
-    d.abbr = +d.abbr;
+    d.state = d.state;
+    d.abbr = d.abbr;
     d.poverty = +d.poverty;
     d.healthcare = +d.healthcare;
   });
 
-  var xLinearScale = d3.scaleLinear()
+var xLinearScale = d3.scaleLinear()
     .domain([d3.min(statedata, d => (d.poverty-0.2)), d3.max(statedata, d => d.poverty) ])               
     .range([0, width]);
     
-  var yLinearScale = d3.scaleLinear()
+var yLinearScale = d3.scaleLinear()
     .domain([d3.min(statedata, d=> (d.healthcare-1)), d3.max(statedata, d => d.healthcare) ])
     .range([height, 0]);
 
@@ -73,20 +73,20 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("fill", "purple")
     .attr("opacity", ".5");
 
-  var circleText = chartGroup.selectAll("null")
+  var circleText = chartGroup.selectAll("text.stateText")
     .data(statedata)
     .enter()
     .append("text")
     .attr("class", "stateText")
+    .text(function(d) {
+      return d.abbr})
     .attr("x", function(d) { 
       return xLinearScale(d.poverty)
       })
     .attr("y", function(d) {
       return yLinearScale(d.healthcare)
       })
-    .text(function(d) {
-      return d.abbr
-      })
+   
     .attr("font-family", "sans-serif")
     .attr("font-size", "10px")
     .attr("text-anchor", "middle")
