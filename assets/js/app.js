@@ -78,9 +78,11 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .enter()
     .append("text")
     .attr("class", "stateText")
-    .text(function(d){return d.abbr})
-    .attr("dx", d => xLinearScale(d[chosenXAxis]))
-    .attr("dy", d => yLinearScale(d.healthcare));
+    .attr("x", d => xLinearScale(d.poverty))
+    .attr("y", d => yLinearScale(d.healthcare))
+    .attr("font-size", "8px")
+    .text(d => d.abbr)
+    .attr("text-anchor", "middle")
 
 // Y Axis Label
   chartGroup.append("text")
