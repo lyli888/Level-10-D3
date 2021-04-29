@@ -35,6 +35,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
 
   // Parse data
   statedata.forEach(function(d) {
+    d.state = +d.state
     d.abbr = +d.abbr;
     d.poverty = +d.poverty;
     d.healthcare = +d.healthcare;
@@ -72,7 +73,6 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("fill", "purple")
     .attr("opacity", ".5");
 
-  //Circle Text
   var circleText = chartGroup.selectAll("text.stateText")
     .data(statedata)
     .enter()
@@ -80,9 +80,32 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("class", "stateText")
     .attr("x", d => xLinearScale(d.poverty))
     .attr("y", d => yLinearScale(d.healthcare))
-    .attr("font-size", "8px")
+    .attr("font-size", "10px")
     .text(d => d.abbr)
     .attr("text-anchor", "middle")
+
+    // Step 6: Initialize tool tip
+    // ==============================
+    var toolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([20, -10])
+      .html(function(d) {
+        return (`${d.state}<b>% Poverty: ${d.poverty}<b>% Without Healthcare: ${d.healthcare}`);
+      });
+
+    // Step 7: Create tooltip in the chart
+    // ==============================
+    circleLabels.call(toolTip);
+
+    // Step 8: Create event listeners to display and hide the tooltip
+    // ==============================
+    circleLabels.on("click", function(data) {
+      toolTip.show(data, this);
+    })
+      // onmouseout event
+      .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+      });
 
 // Y Axis Label
   chartGroup.append("text")
@@ -102,4 +125,3 @@ chartGroup.append("text")
     .text("% In Poverty");
 
 });
-
