@@ -73,7 +73,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("fill", "purple")
     .attr("opacity", ".5");
 
-  var circleText = chartGroup.selectAll("text.stateText")
+  var circleText = chartGroup.selectAll("null")
     .data(statedata)
     .enter()
     .append("text")
