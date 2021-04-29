@@ -33,7 +33,7 @@ var chartGroup = svg.append("g")
 d3.csv("assets/data/data.csv").then(function(statedata) {
  
 
-  // parse data
+  // Parse data
   statedata.forEach(function(d) {
     d.abbr = +d.abbr;
     d.poverty = +d.poverty;
@@ -69,7 +69,7 @@ d3.csv("assets/data/data.csv").then(function(statedata) {
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 15)
-    .attr("class", "blue")
+    .attr("fill", "purple")
     .attr("opacity", ".5");
 
   //Circle Text
