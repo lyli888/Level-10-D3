@@ -1,5 +1,7 @@
 # Data Journalism and D3
 
+### See "Interactive ToolTip Graph Screenshot.png" for project results & tooltips on mouse-click. Plotly is built on D3.
+
 You need to create a scatter plot between two of the data variables in the dataset from the csv file, `Lack of Healthcare vs. Poverty in % for each state plus the District of Columbia`.
 
 Using the D3 techniques we taught you in class, create a scatter plot that represents each state with circle elements. You'll code this graphic in the `app.js` file of your homework directory—make sure you pull in the data from `data.csv` by using the `d3.csv` function. 
@@ -12,7 +14,7 @@ Using the D3 techniques we taught you in class, create a scatter plot that repre
 
 * Note: You'll need to use `python -m http.server` to run the visualization. This will host the page at `localhost:8000` in your web browser. 
 
-* See "Interactive ToolTip Graph Screenshot.png" for project results & tooltips on mouse-click. Plotly is built on D3.
+
 
 
 
