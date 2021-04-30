@@ -1,6 +1,6 @@
 # Data Journalism and D3
 
-### See [screenshot](/Interactive_ToolTip_Graph_Screenshot.png) for project results & tooltips on mouse-click. Plotly is built on D3.
+### See [screenshot](https://github.com/lyli888/Level-12-D3/blob/main/Interactive%20ToolTip%20Graph%20Screenshot.png) for project results & tooltips on mouse-click. Plotly is built on D3.
 
 You need to create a scatter plot between two of the data variables in the dataset from the csv file, `Lack of Healthcare vs. Poverty in % for each state plus the District of Columbia`.
 
